@@ -1,0 +1,16 @@
+# Node modules
+node_modules/
+
+# Playwright output
+test-results/
+playwright-report/
+
+# Logs
+*.log
+
+# IDE settings (optional)
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
