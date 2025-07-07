@@ -22,6 +22,8 @@ import { chromium } from 'playwright';
         await page.click('#add-to-cart-sauce-labs-onesie');
         await page.locator('[data-test="add-to-cart-test\.allthethings\(\)-t-shirt-\(red\)"]').click();
 
+        await page.locator('[data-test="shopping-cart-link"]').click();
+
     } catch (error){
         console.error('Something went wrong', error)
     } finally {
