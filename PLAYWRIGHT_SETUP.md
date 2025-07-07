@@ -1,4 +1,4 @@
-Here’s the entire Complete Playwright + TypeScript Monorepo Setup Summary in one block you can copy as a single file — ready to save as PLAYWRIGHT_SETUP.md or drop into your README:
+Here’s the entire Complete Playwright + TypeScript Monorepo Setup Summary
 
 # Complete Playwright + TypeScript Monorepo Setup Summary
 
