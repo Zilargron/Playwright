@@ -9,6 +9,7 @@ test.describe('Login tests for all users', () => {
 
       if (user.valid) {
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+        await expect(page.locator('.inventory_item')).toHaveCount(6);
       } else {
         await expect(page.locator('[data-test="error"]')).toBeVisible();
       }
