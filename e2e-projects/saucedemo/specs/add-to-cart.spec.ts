@@ -4,11 +4,7 @@ import { users } from '../test-data/users';
 
 test('Login and add all to cart', async ({page}) => {
     
-    await page.goto('https://www.saucedemo.com');
-
-    await page.fill('#user-name', 'standard_user');
-    await page.fill('#password', 'secret_sauce');
-    await page.getByRole('button', {name:'Login'}).click();
+    await loginwithcredentials(page, 'standard_user', 'secret_sauce');
 
     await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
 
