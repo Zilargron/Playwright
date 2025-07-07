@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { loginwithcredentials } from '../utils/loginwithcredentials';
-import { users } from '../test-data/validusers';
+import { users } from '../test-data/users.ts';
 
 test.describe('Login and Logout for valid users', () => {
     for (const user of users){
