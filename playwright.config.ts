@@ -5,8 +5,12 @@ export default defineConfig({
  projects: [
     {
       name: 'Saucedemo',
-      testDir: './e2e-projects/saucedemo/specs',
-    }
+      testDir: './e2e-websites/saucedemo/specs',
+    },
+    {
+      name: 'Saucedemo-Practice',
+      testDir: './practice/saucedemo-practice/specs',
+    },
     // Add more websites here later
  ],
 
