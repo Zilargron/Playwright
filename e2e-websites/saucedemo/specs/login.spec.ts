@@ -316,5 +316,39 @@ test.describe('00 - Login flow for SauceDemo', () => {
 
     });
 
+    test('09 - Login without entering a password', async ({ page }) => {
+
+        await test.step('Go to Landing page', async() => {
+            
+            await page.goto(baseurl);
+
+            await expect(page).toHaveURL(baseurl);
+
+            await expect(page.locator('.login_logo')).toBeVisible();
+
+        });
+
+        await test.step('Enter a valid username without entering a valid password', async() => {
+
+            await page.locator('input[data-test="username"]').fill(user_standard);
+
+            await expect(page.locator('input[data-test="username"]')).toHaveValue(user_standard);
+
+        });
+
+        await test.step('Verify Login', async() => {
+
+            await page.getByRole('button', {name: 'Login'}).click();
+
+            const error4 = page.locator('[data-test="error"]');
+
+            await expect(error4).toBeVisible();
+
+            await expect(error4).toContainText('Password is required');
+
+        });
+
+    })
+
 
 });
