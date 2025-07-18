@@ -42,7 +42,6 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.goto(baseurl);
 
             await expect(page).toHaveURL(baseurl);
-
             await expect(page.locator('.login_logo')).toBeVisible();
 
         });
@@ -50,11 +49,9 @@ test.describe('00 - Login flow for SauceDemo', () => {
         await test.step('Enter username and password as user standard', async () => {
 
             await page.locator('input[data-test="username"]').fill(user_standard);
-            
             await page.locator('input[data-test="password"]').fill(pass_standard);
 
             await expect(page.locator('input[data-test="username"]')).toHaveValue(user_standard);
-
             await expect(page.locator('input[data-test="password"]')).toHaveValue(pass_standard);
 
         });
@@ -64,7 +61,6 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.getByRole('button', {name: 'Login'}).click();
 
             await expect(page.locator('[data-test="title"]')).toBeVisible();
-
             await expect(page.locator('.inventory_container')).toBeVisible();
 
         });
@@ -79,30 +75,26 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.goto(baseurl);
 
             await expect(page).toHaveURL(baseurl);
-
             await expect(page.locator('.login_logo')).toBeVisible();
         });
 
         await test.step('Enter username and password as user locked', async () => {
 
             await page.locator('input[data-test="username"]').fill(user_locked);
-
             await page.locator('input[data-test="password"]').fill(pass_locked);
 
             await expect(page.locator('input[data-test="username"]')).toHaveValue(user_locked);
-
             await expect(page.locator('input[data-test="password"]')).toHaveValue(pass_locked);
 
         });
 
         await test.step('Verify login', async () => {
 
-            await page.getByRole('button', {name: 'Login'}).click();
-
             const error = page.locator('[data-test="error"]');
+
+            await page.getByRole('button', {name: 'Login'}).click();
             
             await expect(error).toBeVisible();
-
             await expect(error).toContainText('locked out');
 
         });
@@ -116,7 +108,6 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.goto(baseurl);
 
             await expect(page).toHaveURL(baseurl);
-
             await expect(page.locator('.login_logo')).toBeVisible();
 
         });
@@ -124,11 +115,9 @@ test.describe('00 - Login flow for SauceDemo', () => {
         await test.step('Enter username and password as user problem', async () => {
 
             await page.locator('input[data-test="username"]').fill(user_problem);
-            
             await page.locator('input[data-test="password"]').fill(pass_problem);
 
             await expect(page.locator('input[data-test="username"]')).toHaveValue(user_problem);
-
             await expect(page.locator('input[data-test="password"]')).toHaveValue(pass_problem);
 
         });
@@ -138,7 +127,6 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.getByRole('button', {name: 'Login'}).click();
 
             await expect(page.locator('[data-test="title"]')).toBeVisible();
-
             await expect(page.locator('.inventory_container')).toBeVisible();
 
         });
@@ -152,7 +140,6 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.goto(baseurl);
 
             await expect(page).toHaveURL(baseurl);
-
             await expect(page.locator('.login_logo')).toBeVisible();
 
         });
@@ -160,11 +147,9 @@ test.describe('00 - Login flow for SauceDemo', () => {
        await test.step('Enter username and password as user performance', async () => {
 
             await page.locator('input[data-test="username"]').fill(user_performance);
-            
             await page.locator('input[data-test="password"]').fill(pass_performance);
 
             await expect(page.locator('input[data-test="username"]')).toHaveValue(user_performance);
-
             await expect(page.locator('input[data-test="password"]')).toHaveValue(pass_performance);
 
         });
@@ -174,7 +159,6 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.getByRole('button', {name: 'Login'}).click();
 
             await expect(page.locator('[data-test="title"]')).toBeVisible();
-
             await expect(page.locator('.inventory_container')).toBeVisible();
 
         });
@@ -188,7 +172,6 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.goto(baseurl);
 
             await expect(page).toHaveURL(baseurl);
-
             await expect(page.locator('.login_logo')).toBeVisible();
             
         })
@@ -196,11 +179,9 @@ test.describe('00 - Login flow for SauceDemo', () => {
         await test.step('Enter username and password as user error', async () => {
 
             await page.locator('input[data-test="username"]').fill(user_error);
-            
             await page.locator('input[data-test="password"]').fill(pass_error);
 
             await expect(page.locator('input[data-test="username"]')).toHaveValue(user_error);
-
             await expect(page.locator('input[data-test="password"]')).toHaveValue(pass_error);            
 
         });
@@ -210,7 +191,6 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.getByRole('button', {name: 'Login'}).click();
 
             await expect(page.locator('[data-test="title"]')).toBeVisible();
-
             await expect(page.locator('.inventory_container')).toBeVisible();
 
         });
@@ -224,19 +204,16 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.goto(baseurl);
 
             await expect(page).toHaveURL(baseurl);
-
             await expect(page.locator('.login_logo')).toBeVisible();
             
         })
 
         await test.step('Enter username and password as user visual', async () => {
 
-            await page.locator('input[data-test="username"]').fill(user_visual);
-            
+            await page.locator('input[data-test="username"]').fill(user_visual);  
             await page.locator('input[data-test="password"]').fill(pass_visual);
 
             await expect(page.locator('input[data-test="username"]')).toHaveValue(user_visual);
-
             await expect(page.locator('input[data-test="password"]')).toHaveValue(pass_visual);            
 
         });
@@ -246,7 +223,6 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.getByRole('button', {name: 'Login'}).click();
 
             await expect(page.locator('[data-test="title"]')).toBeVisible();
-
             await expect(page.locator('.inventory_container')).toBeVisible();
 
         });
@@ -260,7 +236,6 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.goto(baseurl);
 
             await expect(page).toHaveURL(baseurl);
-
             await expect(page.locator('.login_logo')).toBeVisible();
 
         });
@@ -268,23 +243,20 @@ test.describe('00 - Login flow for SauceDemo', () => {
         await test.step('Enter username and password with no matching credentials', async () => {
 
             await page.locator('input[data-test="username"]').fill(user_nomatch);
-
             await page.locator('input[data-test="password"]').fill(pass_nomatch);
 
             await expect(page.locator('input[data-test="username"]')).toHaveValue(user_nomatch)
-
             await expect(page.locator('input[data-test="password"]')).toHaveValue(pass_nomatch);
 
         });
 
         await test.step('Verify Login', async () => {
 
+            const error2 = page.locator('[data-test="error"]');
+
             await page.getByRole('button', {name: 'Login'}).click();
 
-            const error2 = page.locator('[data-test="error"]');
-            
             await expect(error2).toBeVisible();
-
             await expect(error2).toContainText('not match any user in this service');
         });
 
@@ -297,19 +269,17 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.goto(baseurl);
 
             await expect(page).toHaveURL(baseurl);
-
             await expect(page.locator('.login_logo')).toBeVisible();
 
         });
 
         await test.step('Click Login', async () => {
 
-            await page.getByRole('button', {name: 'Login'}).click();
-
             const error3 = page.locator('[data-test="error"]');
 
-            await expect(error3).toBeVisible();
+            await page.getByRole('button', {name: 'Login'}).click();
 
+            await expect(error3).toBeVisible();
             await expect(error3).toContainText('Username is required');
 
         });
@@ -323,7 +293,6 @@ test.describe('00 - Login flow for SauceDemo', () => {
             await page.goto(baseurl);
 
             await expect(page).toHaveURL(baseurl);
-
             await expect(page.locator('.login_logo')).toBeVisible();
 
         });
@@ -338,12 +307,11 @@ test.describe('00 - Login flow for SauceDemo', () => {
 
         await test.step('Verify Login', async() => {
 
+            const error4 = page.locator('[data-test="error"]');
+            
             await page.getByRole('button', {name: 'Login'}).click();
 
-            const error4 = page.locator('[data-test="error"]');
-
             await expect(error4).toBeVisible();
-
             await expect(error4).toContainText('Password is required');
 
         });
