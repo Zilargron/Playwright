@@ -84,6 +84,6 @@ test.describe('Checking Item Pages', () => {
 
         });
 
-    })
+    });
 
-})
+});
