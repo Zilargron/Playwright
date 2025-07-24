@@ -8,8 +8,8 @@ export default defineConfig({
       testDir: './e2e-websites/saucedemo/specs',
     },
     {
-      name: 'Saucedemo-Practice',
-      testDir: './practice/saucedemo-practice/specs',
+      name: 'Saucedemo',
+      testDir: './practice/saucedemo/specs',
     },
     // Add more websites here later
  ],
