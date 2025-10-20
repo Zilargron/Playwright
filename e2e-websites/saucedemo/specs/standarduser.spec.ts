@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 
-import  { LoginPage } from '../pages/loginPage';
+import { LoginPage } from '../pages/loginPage';
 import { InventoryPage } from '../pages/inventoryPage';
 import { CartPage } from '../pages/cartPage';
 import { CheckoutPageOne } from '../pages/checkoutPageOne';

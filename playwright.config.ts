@@ -4,12 +4,16 @@ export default defineConfig({
       // Use "projects" if you have multiple websites
  projects: [
     {
-      name: 'Saucedemo',
+      name: 'Saucedemo Main',
       testDir: './e2e-websites/saucedemo/specs',
     },
     {
-      name: 'Saucedemo',
+      name: 'Saucedemo Practice',
       testDir: './practice/saucedemo/specs',
+    },
+    {
+      name: 'Demoblaze',
+      testDir: './e2e-websites/demoblaze/specs',
     },
     // Add more websites here later
  ],
