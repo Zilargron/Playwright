@@ -7,6 +7,7 @@ export class LoginPage{
 
     // Locators
     readonly loginLink: Locator;
+    readonly modal: Locator;
     readonly usernameField: Locator;
     readonly passwordField: Locator;
     readonly loginButton: Locator;
@@ -14,8 +15,8 @@ export class LoginPage{
     readonly xButton: Locator;
     readonly welcomeMessage: Locator;
     readonly logo: Locator;
-    readonly modaltitle: Locator;
     readonly logoutLink: Locator;
+    readonly loginModalLabel: Locator;
 
 
     // Connect LoginPage to the browser and set up page locator elements
@@ -24,16 +25,15 @@ export class LoginPage{
         this.page = page;
         this.loginLink = page.getByRole('link', {name: "Log in"});
         this.logoutLink = page.getByRole('link', {name: "Log out"});
-        this.usernameField = page.locator('#loginusername');
-        this.passwordField = page.locator('#loginpassword');
-        this.loginButton = page.getByRole('button', {name: "Log in"});
-        this.xButton = page.getByRole('button', {name: "Close"}).nth(0);
-        this.closeButton = page.getByRole('button', {name: "Close"}).nth(1);
+        this.modal = page.locator('#logInModal');
+        this.loginModalLabel = this.modal.locator('#logInModalLabel');
+        this.usernameField = this.modal.locator('#loginusername');
+        this.passwordField = this.modal.locator('#loginpassword');
+        this.loginButton = this.modal.getByRole('button', {name: "Log in"});
+        this.xButton = this.modal.getByRole('button', {name: "Close"}).first();
+        this.closeButton = this.modal.getByRole('button', {name: "Close"}).last();
         this.welcomeMessage = page.locator('#nameofuser')
-        this.logo = page.locator('img[src="blazemeter-favicon-512x512.png"]').nth(0);
-        this.modaltitle = page.locator('#logInModalLabel');
-
-
+        this.logo = page.locator('img[src="blazemeter-favicon-512x512.png"]').first();
 
     }
 
@@ -48,7 +48,8 @@ export class LoginPage{
     async openLoginModal(){
 
         await this.loginLink.click();
-        await expect(this.modaltitle).toBeVisible();
+        await this.modal.waitFor({state: 'visible'});
+        await expect(this.loginModalLabel).toBeVisible();
 
     }
 
@@ -71,10 +72,16 @@ export class LoginPage{
 
     }
 
+    async waitForSuccessfulLogin(username: string){
+
+        await expect(this.welcomeMessage).toBeVisible({timeout: 7000});
+        await expect(this.welcomeMessage).toContainText(username, {timeout: 7000});
+
+    }
+
     async clickLogOutLink(){
 
         await this.logoutLink.click();
-        await this.page.waitForTimeout(2500);
         await expect(this.loginLink).toBeVisible();
 
     }
@@ -89,6 +96,17 @@ export class LoginPage{
         return dialog.message();
     }
 
-    
+    async closeLoginModalWithTheCloseButton(){
+        await expect(this.loginModalLabel).toBeVisible();
+        await this.closeButton.click();
+        await expect(this.loginModalLabel).toBeHidden();
+
+    }
+
+    async closeLoginModalWithTheXButton(){
+        await expect(this.loginModalLabel).toBeVisible();
+        await this.xButton.click();
+        await expect(this.loginModalLabel).toBeHidden();
+    }
 
 }

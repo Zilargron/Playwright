@@ -5,6 +5,7 @@ import * as path from 'path';
 dotenv.config({path: path.resolve(__dirname, '../../../envs/.env.demoblaze')});
 
 import {LoginPage} from '../pages/loginPage';
+import { log } from 'console';
 
 const baseurl = process.env.BASE_URL || 'https://www.demoblaze.com/index.html';
 const username = process.env.DEMOBLAZE_USERNAME || '';
@@ -40,6 +41,7 @@ test.describe('Login Feature', () => {
         await test.step ('04 - CLick the login button and click logout', async() => {
 
            await loginPage.clickLogInButton();
+           await loginPage.waitForSuccessfulLogin(username);
            await loginPage.clickLogOutLink();
             
         });
@@ -62,14 +64,17 @@ test.describe('Login Feature', () => {
             await loginPage.fillCredentials(wrongusername, wrongpassword);
             const alertMsg = await loginPage.captureLoginAlert();
             expect(alertMsg).toContain('User does not exist.');
+            await loginPage.closeLoginModalWithTheCloseButton();
             
         });
 
         await test.step ('03 - Login using right username and wrong password', async() => {
 
+            await loginPage.openLoginModal();
             await loginPage.fillCredentials(username, wrongpassword);
             const alertMsg = await loginPage.captureLoginAlert();
-            expect(alertMsg).toContain('Wrong password.')
+            expect(alertMsg).toContain('Wrong password.');
+            await loginPage.closeLoginModalWithTheXButton();
 
         });
 
