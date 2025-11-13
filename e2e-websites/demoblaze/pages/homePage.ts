@@ -16,6 +16,22 @@ export class HomePage{
     readonly carouselnext: Locator;
     readonly carouselprev: Locator;
 
+    readonly navbar: Locator;
+    readonly homeLink: Locator;
+    readonly contactLink: Locator;
+    readonly aboutUsLink: Locator;
+    readonly cartLink: Locator;
+
+    readonly contactModal: Locator;
+    readonly contactEmail: Locator;
+    readonly contactName: Locator;
+    readonly contactMessage: Locator;
+    readonly contactSendMessageButton: Locator;
+    readonly contactModalXButton: Locator;
+
+    readonly aboutUsModal: Locator;
+
+
 
     constructor(page:Page){
 
@@ -32,8 +48,27 @@ export class HomePage{
         this.carouselnext = this.carousel.locator('.carousel-control-next');
         this.carouselprev = this.carousel.locator('.carousel-control-prev');
 
+        this.navbar = page.locator('#navbarExample');
+        this.homeLink = this.navbar.getByRole('link', {name: "Home"});
+        this.contactLink = this.navbar.getByRole('link', {name: "Contact"});
+        this.aboutUsLink = this.navbar.getByRole('link', {name: "About us"});
+        this.cartLink = this.navbar.getByRole('link', {name: "Cart"});
+
+        this.contactModal = page.locator('#exampleModal');
+        this.contactEmail = this.contactModal.locator('#recipient-email');
+        this.contactName = this.contactModal.locator('#recipient-name');
+        this.contactMessage = this.contactModal.locator('#message-text');
+        this.contactSendMessageButton = this.contactModal.getByRole('button', {name: "Send message"});
+        this.contactModalXButton = this.contactModal.getByRole('button', {name: "Close"}).first();
+
+
+        this.aboutUsModal = page.locator('#videoModal');
+        
+
     }
-    
+    /*
+        CATEGORIES AND LIST UPDATES - CODES
+    */
     async clickphones(){
 
         await this.catphones.click();
@@ -54,6 +89,10 @@ export class HomePage{
         await expect(this.apple24).toBeVisible();
 
     }
+
+    /*
+        CAROUSEL - CODES
+    */
 
     async waitForCarousel(timeout = 8000){
 
@@ -88,6 +127,65 @@ export class HomePage{
         await expect(this.carouselactive).not.toHaveAttribute('src', prev, {timeout});
 
     }
+
+    /* 
+        NAVBAR - CODES
+    */
+
+    async clickHomeLink(url: string){
+
+        await this.homeLink.click();
+        await expect(this.page).toHaveURL(url);
+        await expect(this.navbar).toBeVisible();
+
+    }
     
+    /* 
+        NAVBAR CONTACT - CODES
+    */
+    async clickContactLink(){
+
+        await this.contactLink.click();
+        await this.contactModal.waitFor({state: "visible"});
+        await expect(this.contactModal).toBeVisible();
+
+    }
+
+    async fillContactEmail(email: string){
+
+        await this.contactEmail.fill(email);
+
+    }
+
+    async fillContactName(name: string){
+
+        await this.contactName.fill(name);
+
+    }
+
+    async fillContactMessage(message: string){
+
+        await this.contactMessage.fill(message);
+
+    }
+
+    async closeContactModal(){
+
+        await this.contactModal.waitFor({state: "visible"});
+        await this.contactModalXButton.click();
+        await this.contactModal.waitFor({state: "hidden"});
+        await expect(this.contactModal).not.toBeVisible();
+
+    }
+    /* 
+        NAVBAR ABOUTUS - CODES
+    */
+    async clickAboutUsLink(){
+
+        await this.aboutUsLink.click();
+        await this.aboutUsModal.waitFor({state: "attached"});
+        await expect(this.aboutUsModal).toBeVisible();
+
+    }
 
 }   

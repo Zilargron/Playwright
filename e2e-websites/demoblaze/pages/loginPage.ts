@@ -7,16 +7,21 @@ export class LoginPage{
 
     // Locators
     readonly loginLink: Locator;
+    readonly logoutLink: Locator;
+
     readonly modal: Locator;
+    readonly loginModalLabel: Locator;
     readonly usernameField: Locator;
     readonly passwordField: Locator;
     readonly loginButton: Locator;
-    readonly closeButton: Locator;
     readonly xButton: Locator;
+    readonly closeButton: Locator;
+
+
     readonly welcomeMessage: Locator;
     readonly logo: Locator;
-    readonly logoutLink: Locator;
-    readonly loginModalLabel: Locator;
+
+
 
 
     // Connect LoginPage to the browser and set up page locator elements
@@ -25,6 +30,7 @@ export class LoginPage{
         this.page = page;
         this.loginLink = page.getByRole('link', {name: "Log in"});
         this.logoutLink = page.getByRole('link', {name: "Log out"});
+
         this.modal = page.locator('#logInModal');
         this.loginModalLabel = this.modal.locator('#logInModalLabel');
         this.usernameField = this.modal.locator('#loginusername');
@@ -32,6 +38,7 @@ export class LoginPage{
         this.loginButton = this.modal.getByRole('button', {name: "Log in"});
         this.xButton = this.modal.getByRole('button', {name: "Close"}).first();
         this.closeButton = this.modal.getByRole('button', {name: "Close"}).last();
+
         this.welcomeMessage = page.locator('#nameofuser')
         this.logo = page.locator('img[src="blazemeter-favicon-512x512.png"]').first();
 

@@ -53,7 +53,7 @@ test.describe('Home features', () => {
             await homePage.waitForCarousel();
         });
 
-        await test.step('02 - Get the information of the active images and click next and previous', async () => {
+        await test.step('02 - Get the information of the active images and click next and previous', async() => {
 
             const firstImg = await homePage.getActiveImgSrc();
             await homePage.carouselClickNext();
@@ -71,45 +71,23 @@ test.describe('Home features', () => {
         });
 
     });
+
+    test('Navbar Links', async({page}) => {
+
+        const loginPage = new LoginPage(page);
+        const homePage = new HomePage(page);
+
+        await test.step('01 - Go to the landing page', async() => {
+
+            await loginPage.goto(baseurl);
+
+        });
+
+        await test.step('02 - ', async() => {
+
+            
+
+        });
+
+    });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Purpose:
-// Handle homepage navigation and product categories.
-
-// Locators:
-
-// Category links (Phones, Laptops, Monitors)
-
-// Navigation menu (Home, Contact, About, Cart, Log in, Sign up)
-
-// Functions:
-
-// clickCategory(name: string)
-
-// selectProductByName(product: string)
-
-// navigateTo(page: string)
-
-// Spec File: homeNavigation.spec.ts
-
-// Test Scenarios:
-// ✅ Clicking each category shows correct products
-// ✅ Selecting a product opens its details
-// ✅ Navigation bar links redirect correctly
