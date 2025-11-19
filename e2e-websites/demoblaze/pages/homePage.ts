@@ -129,7 +129,7 @@ export class HomePage{
     }
 
     /* 
-        NAVBAR - CODES
+        NAVBAR HOME - CODES
     */
 
     async clickHomeLink(url: string){
@@ -151,20 +151,10 @@ export class HomePage{
 
     }
 
-    async fillContactEmail(email: string){
+    async fillContactModalMessages(email: string, name: string, message: string){
 
         await this.contactEmail.fill(email);
-
-    }
-
-    async fillContactName(name: string){
-
         await this.contactName.fill(name);
-
-    }
-
-    async fillContactMessage(message: string){
-
         await this.contactMessage.fill(message);
 
     }
@@ -177,6 +167,12 @@ export class HomePage{
         await expect(this.contactModal).not.toBeVisible();
 
     }
+
+    async clickContactSendMessage(){
+
+        await this.contactSendMessageButton.click();
+
+    }
     /* 
         NAVBAR ABOUTUS - CODES
     */
@@ -185,6 +181,16 @@ export class HomePage{
         await this.aboutUsLink.click();
         await this.aboutUsModal.waitFor({state: "attached"});
         await expect(this.aboutUsModal).toBeVisible();
+
+    }
+
+    /*
+        NAVBAR CART -CODES
+    */
+
+    async clickCartLink(){
+
+        
 
     }
 

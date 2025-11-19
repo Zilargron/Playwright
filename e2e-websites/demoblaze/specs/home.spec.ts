@@ -8,6 +8,9 @@ import {LoginPage} from '../pages/loginPage';
 import {HomePage} from '../pages/homePage';
 
 const baseurl = process.env.BASE_URL || '';
+const email = process.env.CONTACT_EMAIL || '';
+const name = process.env.CONTACT_NAME || '';
+const message = process.env.CONTACT_MESSAGE || '';
 
 test.describe('Home features', () => {
 
@@ -83,7 +86,50 @@ test.describe('Home features', () => {
 
         });
 
-        await test.step('02 - ', async() => {
+        await test.step('02 - Home navbar link', async() => {
+
+            await homePage.clickHomeLink(baseurl);
+
+        });
+
+        await test.step('03 - Contact navbar link, Click Fill and Send', async() => {
+            
+            await homePage.clickContactLink();
+            await homePage.fillContactModalMessages(email, name, message);
+            await homePage.clickContactSendMessage();
+
+        });
+
+        await test.step('04 - About us', async() => {
+
+
+
+        });
+        /*
+        LOGIN PAGE ALREADY COVERED IN LOGIN.SPEC.TS
+        */
+
+        await test.step('05 -   Sign UP', async() => {
+
+
+
+        });
+
+
+    });
+
+    test('Cart', async({page}) => {
+        
+        const loginPage = new LoginPage(page);
+        const homePage = new HomePage(page);
+
+        await test.step('01 - Go to the landing page', async() => {
+
+            await loginPage.goto(baseurl);
+
+        });
+
+        await test.step('02 - Click the Cart Navbar Link', async() => {
 
             
 
