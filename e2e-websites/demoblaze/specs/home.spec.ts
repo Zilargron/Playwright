@@ -8,9 +8,11 @@ import {LoginPage} from '../pages/loginPage';
 import {HomePage} from '../pages/homePage';
 
 const baseurl = process.env.BASE_URL || '';
+const carturl = process.env.CART_URL || '';
 const email = process.env.CONTACT_EMAIL || '';
 const name = process.env.CONTACT_NAME || '';
 const message = process.env.CONTACT_MESSAGE || '';
+
 
 test.describe('Home features', () => {
 
@@ -100,9 +102,10 @@ test.describe('Home features', () => {
 
         });
 
-        await test.step('04 - About us', async() => {
+        await test.step('04 - About Us navbar link, Click and Close Modal', async() => {
 
-
+            await homePage.clickAboutUsLink();
+            await homePage.closeAboutUsModal();
 
         });
         /*
@@ -112,28 +115,27 @@ test.describe('Home features', () => {
         await test.step('05 -   Sign UP', async() => {
 
 
-
         });
 
+        await test.step('06 - Click the Cart Navbar Link', async() => {
 
-    });
-
-    test('Cart', async({page}) => {
-        
-        const loginPage = new LoginPage(page);
-        const homePage = new HomePage(page);
-
-        await test.step('01 - Go to the landing page', async() => {
-
+            await homePage.clickCartLink(carturl);
             await loginPage.goto(baseurl);
 
         });
 
-        await test.step('02 - Click the Cart Navbar Link', async() => {
-
-            
-
-        });
 
     });
+
+    // test('Product Card Validation', async({page}) => {
+        
+    //     const loginPage = new LoginPage(page);
+    //     const homePage = new HomePage(page);
+
+
+
+
+    // });
+
+    
 });

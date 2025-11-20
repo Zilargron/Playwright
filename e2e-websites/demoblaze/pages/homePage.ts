@@ -30,6 +30,7 @@ export class HomePage{
     readonly contactModalXButton: Locator;
 
     readonly aboutUsModal: Locator;
+    readonly aboutUsCloseButton: Locator;
 
 
 
@@ -63,6 +64,7 @@ export class HomePage{
 
 
         this.aboutUsModal = page.locator('#videoModal');
+        this.aboutUsCloseButton = page.getByLabel('Close').last();
         
 
     }
@@ -136,7 +138,9 @@ export class HomePage{
 
         await this.homeLink.click();
         await expect(this.page).toHaveURL(url);
+        await this.navbar.waitFor({state: "attached"});
         await expect(this.navbar).toBeVisible();
+        await this.page.waitForTimeout(500);
 
     }
     
@@ -145,6 +149,7 @@ export class HomePage{
     */
     async clickContactLink(){
 
+        await this.navbar.waitFor({state: "visible"});
         await this.contactLink.click();
         await this.contactModal.waitFor({state: "visible"});
         await expect(this.contactModal).toBeVisible();
@@ -171,6 +176,7 @@ export class HomePage{
     async clickContactSendMessage(){
 
         await this.contactSendMessageButton.click();
+        await this.page.waitForTimeout(500);
 
     }
     /* 
@@ -184,14 +190,30 @@ export class HomePage{
 
     }
 
-    /*
-        NAVBAR CART -CODES
-    */
+    async closeAboutUsModal(){
 
-    async clickCartLink(){
-
-        
+        await this.aboutUsCloseButton.click();
+        await this.aboutUsModal.waitFor({state: "hidden"});
+        await expect(this.aboutUsModal).toBeHidden();
 
     }
+
+    /*
+        NAVBAR CART - CODES
+    */
+
+    async clickCartLink(url: string){
+
+        await this.cartLink.click();
+        await expect(this.page).toHaveURL(url);
+        await this.page.waitForTimeout(500);
+
+    }
+
+    /*
+        SIGN UP - CODES
+    */
+
+    
 
 }   
